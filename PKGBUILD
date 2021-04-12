@@ -8,7 +8,7 @@ arch=("i686" "x86_64")
 license=('MIT')
 depends=("kio" "knotifications" "kwindowsystem" "ki18n")
 makedepends=("cmake" "extra-cmake-modules" "git")
-source=(git+https://github.com/torvic9/kplasmafoxhelper.git)
+source=(git+https://gitlab.com/dr460nf1r3/kfiredragonhelper.git)
 md5sums=('SKIP')
 
 build() {
