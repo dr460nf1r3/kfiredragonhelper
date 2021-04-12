@@ -15,7 +15,7 @@ include(FeatureSummary)
 
 find_package(KF5 REQUIRED COMPONENTS Notifications KIO WindowSystem I18n)
 
-add_executable(kplasmafoxhelper main.cpp)
+add_executable(kfiredragonhelper main.cpp)
 
 target_link_libraries(kfiredragonhelper KF5::I18n KF5::KIOWidgets KF5::Notifications KF5::WindowSystem)
 
