@@ -55,10 +55,13 @@ CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 //#define DEBUG_KDE
 
 #define HELPER_VERSION 6
-#define APP_HELPER_VERSION "5.0.5"
+#define APP_HELPER_VERSION "5.0.6"
 
 int main(int argc, char* argv[])
 {
+    // Avoid getting started by the session manager
+    qunsetenv("SESSION_MANAGER");
+
     QApplication::setAttribute(Qt::AA_EnableHighDpiScaling, true);
 
     QApplication app(argc, argv);
