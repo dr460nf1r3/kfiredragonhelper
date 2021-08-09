@@ -124,55 +124,78 @@ void Helper::readCommand()
     std::cerr << "COMMAND: " << command.toStdString() << std::endl;
 #endif
     bool status;
-    if(command == "CHECK")
-        status = handleCheck();
-    else if(command == "GETPROXY")
-        status = handleGetProxy();
-    else if(command == "HANDLEREXISTS")
-        status = handleHandlerExists();
-    else if(command == "GETFROMEXTENSION")
-        status = handleGetFromExtension();
-    else if(command == "GETFROMTYPE")
-        status = handleGetFromType();
-    else if(command == "GETAPPDESCFORSCHEME")
-        status = handleGetAppDescForScheme();
-    else if(command == "APPSDIALOG")
-        status = handleAppsDialog();
-    else if(command == "GETOPENFILENAME")
-        status = handleGetOpenOrSaveX(false, false);
-    else if(command == "GETOPENURL")
-        status = handleGetOpenOrSaveX(true, false);
-    else if(command == "GETSAVEFILENAME")
-        status = handleGetOpenOrSaveX(false, true);
-    else if(command == "GETSAVEURL")
-        status = handleGetOpenOrSaveX(true, true);
-    else if(command == "GETDIRECTORYFILENAME")
-        status = handleGetDirectoryX(false);
-    else if(command == "GETDIRECTORYURL")
-        status = handleGetDirectoryX(true);
-    else if(command == "OPEN")
-        status = handleOpen();
-    else if(command == "REVEAL")
-        status = handleReveal();
-    else if(command == "RUN")
-        status = handleRun();
-    else if(command == "GETDEFAULTFEEDREADER")
-        status = handleGetDefaultFeedReader();
-    else if(command == "OPENMAIL")
-        status = handleOpenMail();
-    else if(command == "OPENNEWS")
-        status = handleOpenNews();
-    else if(command == "ISDEFAULTBROWSER")
-        status = handleIsDefaultBrowser();
-    else if(command == "SETDEFAULTBROWSER")
-        status = handleSetDefaultBrowser();
-    else if(command == "DOWNLOADFINISHED")
-        status = handleDownloadFinished();
-    else
-    {
-        std::cerr << "Unknown command for KDE helper: " << command.toStdString() << std::endl;
-        status = false;
+    switch(command) {
+        case "CHECK":
+            status = handleCheck();
+        break;
+        case "GETPROXY":
+            status = handleGetProxy();
+        break;
+        case "HANDLEREXISTS":
+            status = handleHandlerExists();
+        break;
+        case "GETFROMEXTENSION":
+            status = handleGetFromExtension();
+        break;
+        case "GETFROMTYPE":
+            status = handleGetFromType();
+        break;
+        case "GETAPPDESCFORSCHEME":
+            status = handleGetAppDescForScheme();
+        break;
+        case "APPSDIALOG":
+            status = handleAppsDialog();
+        break;
+        case "GETOPENFILENAME":
+            status = handleGetOpenOrSaveX(false, false);
+        break;
+        case "GETOPENURL":
+            status = handleGetOpenOrSaveX(true, false);
+        break;
+        case "GETSAVEFILENAME":
+            status = handleGetOpenOrSaveX(false, true);
+        break;
+        case "GETSAVEURL":
+            status = handleGetOpenOrSaveX(true, true);
+        break;
+        case "GETDIRECTORYFILENAME":
+            status = handleGetDirectoryX(false);
+        break;
+        case "GETDIRECTORYURL":
+            status = handleGetDirectoryX(true);
+        break;
+        case "OPEN":
+            status = handleOpen();
+        break;
+        case "REVEAL":
+            status = handleOpen();
+        break;
+        case "RUN":
+            status = handleRun();
+        break;
+        case "GETDEFAULTFEEDREADER":
+            status = handleGetDefaultFeedReader();
+        break;
+        case "OPENMAIL":
+            status = handleOpenMail();
+        break;
+        case "OPENNEWS":
+            status = handleOpenNews();
+        break;
+        case "ISDEFAULTBROWSER":
+            status = handleIsDefaultBrowser();
+        break;
+        case "SETDEFAULTBROWSER":
+            status = handleSetDefaultBrowser();
+        break;
+        case "DOWNLOADFINISHED":
+            status = handleDownloadFinished();
+        break;
+        default:
+            std::cerr << "Unknown command for KDE helper: " << command.toStdString() << "\n";
+            status = false;
     }
+
     // status done as \1 (==ok) and \0 (==not ok), because otherwise this cannot happen
     // in normal data (\ is escaped otherwise)
     outputLine(status ? "\\1" : "\\0", false); // do not escape
